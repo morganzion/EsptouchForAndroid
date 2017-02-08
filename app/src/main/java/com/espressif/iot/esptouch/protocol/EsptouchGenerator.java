@@ -37,8 +37,7 @@ public class EsptouchGenerator implements IEsptouchGenerator {
 		}
 
 		// generate data code
-		DatumCode dc = new DatumCode(apSsid, apBssid, apPassword, inetAddress,
-				isSsidHiden);
+		DatumCode dc = new DatumCode(apSsid, apBssid, apPassword, inetAddress, isSsidHiden);
 		char[] dcU81 = dc.getU8s();
 		mDcBytes2 = new byte[dcU81.length][];
 

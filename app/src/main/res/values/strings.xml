@@ -10,4 +10,13 @@
     <string name="switchIsSsidHiddenTitle">SSID is Hidden</string>
     <string name="spinnerTaskResultCountTitle">Task result count</string>
     <string name="btnConfirmTitle">Confirm</string>
+
+    <string name="rationale_ask_again">This app may not work correctly without the requested permissions. Open the app settings screen to modify app permissions.</string>
+    <string name="title_settings_dialog">Permissions Required</string>
+    <string name="settings_dialog_canceled">Settings dialog canceled</string>
+    <string name="returned_from_app_settings_to_activity">Returned from app settings to MainActivity</string>
+    <string name="has_read_sms_permission">Has read sms permission: %b</string>
+    <string name="setting">SETTING</string>
+    <string name="permissions_access_location_error">This app need some permission to continue running.</string>
+    <string name="str_request_location_message">This app need location permission to continue running.</string>
 </resources>

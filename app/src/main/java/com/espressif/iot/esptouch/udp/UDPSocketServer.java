@@ -38,8 +38,7 @@ public class UDPSocketServer {
 			this.mServerSocket = new DatagramSocket(port);
 			this.mServerSocket.setSoTimeout(socketTimeout);
 			this.mIsClosed = false;
-			WifiManager manager = (WifiManager) mContext
-					.getSystemService(Context.WIFI_SERVICE);
+			WifiManager manager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
 			mLock = manager.createMulticastLock("test wifi");
 			Log.d(TAG, "mServerSocket is created, socket read timeout: "
 					+ socketTimeout + ", port: " + port);
@@ -84,8 +83,8 @@ public class UDPSocketServer {
 
 	/**
 	 * Receive one byte from the port and convert it into String
-	 * 
-	 * @return
+	 *
+	 * @return byte
 	 */
 	public byte receiveOneByte() {
 		Log.d(TAG, "receiveOneByte() entrance");
@@ -104,7 +103,7 @@ public class UDPSocketServer {
 	 * Receive specific length bytes from the port and convert it into String
 	 * 21,24,-2,52,-102,-93,-60
 	 * 15,18,fe,34,9a,a3,c4
-	 * @return
+	 * @return byte[]
 	 */
 	public byte[] receiveSpecLenBytes(int len) {
 		Log.d(TAG, "receiveSpecLenBytes() entrance: len = " + len);
@@ -118,8 +117,7 @@ public class UDPSocketServer {
 			}
 			Log.e(TAG, "receiveSpecLenBytes: " + new String(recDatas));
 			if (recDatas.length != len) {
-				Log.w(TAG,
-						"received len is different from specific len, return null");
+				Log.w(TAG, "received len is different from specific len, return null");
 				return null;
 			}
 			return recDatas;

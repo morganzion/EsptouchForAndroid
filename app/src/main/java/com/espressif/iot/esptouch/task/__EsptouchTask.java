@@ -52,8 +52,7 @@ public class __EsptouchTask implements __IEsptouchTask {
 			boolean isSsidHidden) {
 		Log.i(TAG, "Welcome Esptouch " + ESPTOUCH_VERSION);
 		if (TextUtils.isEmpty(apSsid)) {
-			throw new IllegalArgumentException(
-					"the apSsid should be null or empty");
+			throw new IllegalArgumentException("the apSsid should be null or empty");
 		}
 		if (apPassword == null) {
 			apPassword = "";
@@ -72,8 +71,7 @@ public class __EsptouchTask implements __IEsptouchTask {
 		mBssidTaskSucCountMap = new HashMap<String, Integer>();
 	}
 
-	private void __putEsptouchResult(boolean isSuc, String bssid,
-			InetAddress inetAddress) {
+	private void __putEsptouchResult(boolean isSuc, String bssid, InetAddress inetAddress) {
 		synchronized (mEsptouchResultList) {
 			// check whether the result receive enough UDP response
 			boolean isTaskSucCountEnough = false;
@@ -160,18 +158,16 @@ public class __EsptouchTask implements __IEsptouchTask {
 					Log.d(TAG, "__listenAsyn() start");
 				}
 				long startTimestamp = System.currentTimeMillis();
-				byte[] apSsidAndPassword = ByteUtil.getBytesByString(mApSsid
-						+ mApPassword);
+				byte[] apSsidAndPassword = ByteUtil.getBytesByString(mApSsid + mApPassword);
 				byte expectOneByte = (byte) (apSsidAndPassword.length + 9);
 				if (__IEsptouchTask.DEBUG) {
 					Log.i(TAG, "expectOneByte: " + (0 + expectOneByte));
 				}
 				byte receiveOneByte = -1;
 				byte[] receiveBytes = null;
-				while (mEsptouchResultList.size() < mParameter
-						.getExpectTaskResultCount() && !mIsInterrupt) {
-					receiveBytes = mSocketServer
-							.receiveSpecLenBytes(expectDataLen);
+				while (mEsptouchResultList.size() < mParameter.getExpectTaskResultCount()
+						&& !mIsInterrupt) {
+					receiveBytes = mSocketServer.receiveSpecLenBytes(expectDataLen);
 					if (receiveBytes != null) {
 						receiveOneByte = receiveBytes[0];
 					} else {
@@ -182,10 +178,8 @@ public class __EsptouchTask implements __IEsptouchTask {
 							Log.i(TAG, "receive correct broadcast");
 						}
 						// change the socket's timeout
-						long consume = System.currentTimeMillis()
-								- startTimestamp;
-						int timeout = (int) (mParameter
-								.getWaitUdpTotalMillisecond() - consume);
+						long consume = System.currentTimeMillis() - startTimestamp;
+						int timeout = (int) (mParameter.getWaitUdpTotalMillisecond() - consume);
 						if (timeout < 0) {
 							if (__IEsptouchTask.DEBUG) {
 								Log.i(TAG, "esptouch timeout");
@@ -204,16 +198,14 @@ public class __EsptouchTask implements __IEsptouchTask {
 								String bssid = ByteUtil.parseBssid(
 										receiveBytes,
 										mParameter.getEsptouchResultOneLen(),
-										mParameter.getEsptouchResultMacLen());
-								InetAddress inetAddress = EspNetUtil
-										.parseInetAddr(
+										mParameter.getEsptouchResultMacLen()
+								);
+								InetAddress inetAddress = EspNetUtil.parseInetAddr(
 												receiveBytes,
-												mParameter
-														.getEsptouchResultOneLen()
-														+ mParameter
-																.getEsptouchResultMacLen(),
-												mParameter
-														.getEsptouchResultIpLen());
+										mParameter.getEsptouchResultOneLen()
+												+ mParameter.getEsptouchResultMacLen(),
+										mParameter.getEsptouchResultIpLen()
+								);
 								__putEsptouchResult(true, bssid, inetAddress);
 							}
 						}
