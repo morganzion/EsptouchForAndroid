@@ -13,9 +13,37 @@ android {
     }
 
     buildTypes {
+        def releaseDate = new Date()
+        def outputNamePrefix = "ESPTOUCH" + "_v${defaultConfig.versionName}" + "_" + releaseDate.format('yyyyMMdd')
+
+        debug {
+            versionNameSuffix " Debug"
+            applicationIdSuffix ".debug"
+
+            //输出apk名称为：应用名_版本信息_时间_debug.apk
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    output.outputFile = new File(
+                            output.outputFile.getParent(),
+                            (outputNamePrefix + "_${variant.buildType.name}" + ".apk").toLowerCase()
+                    )
+                }
+            }
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+
+            //输出apk名称为： 应用名_版本信息_时间.apk
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    output.outputFile = new File(
+                            output.outputFile.getParent(),
+                            (outputNamePrefix + ".apk").toLowerCase()
+                    )
+                }
+            }
         }
     }
 }
