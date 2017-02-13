@@ -22,6 +22,7 @@ public interface __IEsptouchTask {
 
 	/**
 	 * set the esptouch listener, when one device is connected to the Ap, it will be called back
+	 *
 	 * @param esptouchListener when one device is connected to the Ap, it will be called back
 	 */
 	void setEsptouchListener(IEsptouchListener esptouchListener);
