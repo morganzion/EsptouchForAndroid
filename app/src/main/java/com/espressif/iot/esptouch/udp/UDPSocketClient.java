@@ -13,52 +13,51 @@ import java.net.UnknownHostException;
 
 /**
  * this class is used to help send UDP data according to length
- * 
+ *
  * @author afunx
- * 
  */
 public class UDPSocketClient {
 
-	private static final String TAG = "UDPSocketClient";
-	private DatagramSocket mSocket;
-	private volatile boolean mIsStop;
-	private volatile boolean mIsClosed;
+    private static final String TAG = "UDPSocketClient";
+    private DatagramSocket mSocket;
+    private volatile boolean mIsStop;
+    private volatile boolean mIsClosed;
 
-	public UDPSocketClient() {
-		try {
-			this.mSocket = new DatagramSocket();
-			this.mIsStop = false;
-			this.mIsClosed = false;
-		} catch (SocketException e) {
-			if (__IEsptouchTask.DEBUG) {
-				Log.e(TAG, "SocketException");
-			}
-			e.printStackTrace();
-		}
-	}
+    public UDPSocketClient() {
+        try {
+            this.mSocket = new DatagramSocket();
+            this.mIsStop = false;
+            this.mIsClosed = false;
+        } catch (SocketException e) {
+            if (__IEsptouchTask.DEBUG) {
+                Log.e(TAG, "SocketException");
+            }
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	protected void finalize() throws Throwable {
-		close();
-		super.finalize();
-	}
+    @Override
+    protected void finalize() throws Throwable {
+        close();
+        super.finalize();
+    }
 
-	public void interrupt() {
-		if (__IEsptouchTask.DEBUG) {
-			Log.i(TAG, "USPSocketClient is interrupt");
-		}
-		this.mIsStop = true;
-	}
+    public void interrupt() {
+        if (__IEsptouchTask.DEBUG) {
+            Log.i(TAG, "USPSocketClient is interrupt");
+        }
+        this.mIsStop = true;
+    }
 
-	/**
-	 * close the UDP socket
-	 */
-	public synchronized void close() {
-		if (!this.mIsClosed) {
-			this.mSocket.close();
-			this.mIsClosed = true;
-		}
-	}
+    /**
+     * close the UDP socket
+     */
+    public synchronized void close() {
+        if (!this.mIsClosed) {
+            this.mSocket.close();
+            this.mIsClosed = true;
+        }
+    }
 
 	/**
 	 * send the data by UDP
