@@ -119,8 +119,7 @@ public class __EsptouchTask implements __IEsptouchTask {
 	private List<IEsptouchResult> __getEsptouchResultList() {
 		synchronized (mEsptouchResultList) {
 			if (mEsptouchResultList.isEmpty()) {
-				EsptouchResult esptouchResultFail = new EsptouchResult(false,
-						null, null);
+				EsptouchResult esptouchResultFail = new EsptouchResult(false, null, null);
 				esptouchResultFail.setIsCancelled(mIsCancelled.get());
 				mEsptouchResultList.add(esptouchResultFail);
 			}
@@ -187,8 +186,7 @@ public class __EsptouchTask implements __IEsptouchTask {
 							break;
 						} else {
 							if (__IEsptouchTask.DEBUG) {
-								Log.i(TAG, "mSocketServer's new timeout is "
-										+ timeout + " milliseconds");
+								Log.i(TAG, "mSocketServer's new timeout is " + timeout + " milliseconds");
 							}
 							mSocketServer.setSoTimeout(timeout);
 							if (__IEsptouchTask.DEBUG) {
