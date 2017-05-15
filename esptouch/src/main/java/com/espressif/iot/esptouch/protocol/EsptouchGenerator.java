@@ -21,7 +21,7 @@ public class EsptouchGenerator implements IEsptouchGenerator {
      * @param isSsidHiden whether the Ap's ssid is hidden
      */
     public EsptouchGenerator(String apSsid, String apBssid, String apPassword,
-                             InetAddress inetAddress, boolean isSsidHiden) {
+                             InetAddress inetAddress, boolean isSsidHidden) {
         // generate guide code
         GuideCode gc = new GuideCode();
         char[] gcU81 = gc.getU8s();
@@ -32,7 +32,7 @@ public class EsptouchGenerator implements IEsptouchGenerator {
         }
 
         // generate data code
-        DatumCode dc = new DatumCode(apSsid, apBssid, apPassword, inetAddress, isSsidHiden);
+        DatumCode dc = new DatumCode(apSsid, apBssid, apPassword, inetAddress, isSsidHidden);
         char[] dcU81 = dc.getU8s();
         mDcBytes2 = new byte[dcU81.length][];
 
