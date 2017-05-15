@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:singleLine="true"
-            android:textSize="24sp"></TextView>
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,9 +47,7 @@
             android:inputType="text"
             android:singleLine="true"
             android:text=""
-            tools:ignore="TextFields">
-
-        </EditText>
+            tools:ignore="TextFields" />
     </LinearLayout>
 
     <LinearLayout
